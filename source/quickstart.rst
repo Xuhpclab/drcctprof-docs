@@ -53,9 +53,11 @@ To run DrCCTProf, one needs to use the following command:
    +--------------------------------------+---------+-----------------------------------------------------------------------------------------+
    | Name                                 | Version | Features                                                                                |
    +======================================+=========+=========================================================================================+
+   | instr_statistics_clean_call          | release | A instruction counting tool that counts each **instruction**:sup:`*`.                   |
+   +--------------------------------------+---------+-----------------------------------------------------------------------------------------+
    | drcctlib_cct_only_clean_call         | release | A tool that collects call path on each **instruction**:sup:`*`.                         |
    +--------------------------------------+---------+-----------------------------------------------------------------------------------------+
-   | instr_statistics_clean_call          | release | A instruction counting tool that counts each **instruction**:sup:`*`.                   |
+   | drcctlib_instr_statistics_clean_call | release | A instruction counting tool that counts each **instruction**:sup:`*`.                   |
    +--------------------------------------+---------+-----------------------------------------------------------------------------------------+
    | drcctlib_reuse_distance_client_cache | release | A reuse distance measurement tool.                                                      |
    +--------------------------------------+---------+-----------------------------------------------------------------------------------------+
