@@ -14,33 +14,33 @@ Basic structure of a client
 This section describes the basic structure of a DrCCTProf client, 
 including the functionality of various events occurring during the program execution.
 
-DrCCTProf is an extension of DynamoRIO and it can collect the call path of every binary instruction at runtime. It provides a rich set of APIs for developers to build instrumentation clients.
-The term 'instrumentation client' in this context refers to a shared object file that uses the DrCCTProf API 
-& DynamoRIO API to capture and process necessary runtime events. 
+DrCCTProf is an extension of DynamoRIO. It can collect the call path of every binary instruction at runtime. It provides a rich set of APIs for developers to build instrumentation clients.
+The term 'instrumentation client' in this context refers to a shared object file that uses the DrCCTProf APIs 
+& DynamoRIO APIs to capture and analyze necessary runtime events. 
 
 
 To correctly modify the libdrcctlib_instr_statistics_clean_call.so client, 
-you must understand its implementation, `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_. 
+you must understand its implementation in `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_. 
 The diagram below shows the key functions in instr_statistics_clean_call.cpp and how they relate to each other.
 
 .. image:: code/instr_statistics_clean_call_frame.png
   :alt: instr_statistics_clean_call frame
 
-The easiest way to understand the client is to think of it as event-driven. Each function is called upon the occurence of an event during the application execution: 
+The easiest way to understand the client is to think of it as event driven. Each function is called upon the occurence of an event during the application execution: 
 
 - 1. DynamoRIO loads and runs the client, calling ``dr_client_main()`` before the execution of the application.
 
-- 2. In ``dr_client_main()``, the client calls ``ClientInit()``, which will initialize any `extensions of DynamoRIO <https://dynamorio.org/page_ext.html>`_ before the application execution.
+- 2. In ``dr_client_main()``, the client calls ``ClientInit()``, which initializes any `extensions of DynamoRIO <https://dynamorio.org/page_ext.html>`_ before the application execution.
 
-- 3. In ``ClientInit()``, the client calls ``drcctlib_init()``, which will initialize DrCCTPorf and register a function as each instruction of code in the application is prepared before being executed, ``InsTransEventCallback()``. Registering such a function for an event is usually referred to as a 'callback function'.
+- 3. In ``ClientInit()``, the client calls ``drcctlib_init()``, which initializes DrCCTPorf and registers a function (``InsTransEventCallback()``) at each instruction in the application before the application execution. Such a function register for an event (i.e., upon each instruction) is usually called as a 'callback function'.
 
 - 4. In ``InsTransEventCallback()``, the client registers a callback function which is executed for each native instruction which appears in the code of the application, ``InsCount()``. The ``InsCount()`` function is the instrumentation which is the purpose of the client.
 
-- 5. In ``dr_client_main()``, the client registers a callback function which is called just before the client stops running, ``ClientExit()``.
+- 5. In ``dr_client_main()``, the client registers a callback function (``ClientExit()``), which is invoked just before the client stops running (i.e., at the end of the application execution).
 
 - 6. The application stops running and DynamoRIO calls ClientExit().
 
-The preceding information is a simplified explanation of how a client operates. For a more detailed information, read the `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_ file, and refer to details of key functions in the DynamoRIO functions and DrCCTProf APIs reference manual, especially: `dr_insert_clean_call() <https://dynamorio.org/dr__ir__utils_8h.html#a1df44dbe3d8dbf82e63e96741f167c64>`_, which implements the instrumentation you want. ``drcctlib_init(…, …, InsTransEventCallback, …)``, which defines where the
+The steps above simply explain the mechanism for a DrCCTProf client. For detailed information, read the `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_ file, and refer to details of key functions in the DynamoRIO functions and DrCCTProf APIs reference manual, especially: `dr_insert_clean_call() <https://dynamorio.org/dr__ir__utils_8h.html#a1df44dbe3d8dbf82e63e96741f167c64>`_, which implements the instrumentation and ``drcctlib_init(…, …, InsTransEventCallback, …)``, which defines where the
 instrumentation must be inserted.
 
 
@@ -48,21 +48,21 @@ instrumentation must be inserted.
 Code Transformation and code Execution
 ======================================
 
-If you are new to the DynamoRIO Dynamic Binary Instrumentation (DBI) tool platform in general, and DynamoRIO in particular, ensure you understand the method by which instrumentation is added to application code.
+If you are new to the Dynamic Binary Instrumentation (DBI) tool platform in general, and DynamoRIO in particular (DynamoRIO is a DBI tool), ensure you understand the instrumentation mechanism for the application being monitored.
 
 Remember that instrumentation occurs in two phases, **transformation** and **execution**:
 
 -   **Transformation**
 
-Instrumentation code is inserted into the application code.
+Instrumentation code is inserted into the application code. This is only executed once before the application execution.
 
 -   **Execution**
 
-The application code runs, including the instrumentation code which was inserted during transformation.
+The instrumentation code (inserted in the transformation phase) runs together with the application code on the fly.
 
-DynamoRIO performs transformation and execution transparently, provided that you conform to the rules of its API.
+DynamoRIO performs transformation and execution phases transparently, following the rules of its APIs.
 
-In the preceding example, ``InsTransEventCallback()`` is the transformation phase. Calls to ``InsCount()`` is inserted for each instruction but are not called at transformation time. 
-If or when a particular instruction of code is run at execution time, ``InsCount()`` is called, to increment and store the instruction's executed count.
+In the above example, ``InsTransEventCallback()`` is in the transformation phase, which inserts ``InsCount()`` function before each application instruction. Note that ``InsCount()`` is not invoked at this phase. 
+At the execution phase, when an application instruction is executed, ``InsCount()`` is invoked to count instruction statistics.
 
-This is a subtle distinction for new users. The best way to think of the difference is to recognize that `dr_insert_clean_call() <https://dynamorio.org/dr__ir__utils_8h.html#a1df44dbe3d8dbf82e63e96741f167c64>`_ will be called once when a instruction of application code is transformed but the function it registered may be called many times when the instruction is executed.
+The best way to think of the difference of the two phases is to understand that `dr_insert_clean_call() <https://dynamorio.org/dr__ir__utils_8h.html#a1df44dbe3d8dbf82e63e96741f167c64>`_ is called once when an application instruction is transformed, but the function it instruments may be called many times when the application instruction is executed.

@@ -12,7 +12,7 @@ Code-centric
 Initializing DrCCTProf
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This step is to initialize DrCCTProf and register the custom instrumentation functions to monitor all or a subset of instructions:
+This step is to initialize DrCCTProf and register instrumentation functions to monitor all or a subset of instructions:
 
 -------------------
 drcctlib_init()
@@ -35,7 +35,7 @@ drcctlib_init()
 
 .. note::
 
-   After the initialization, you could call the function ``drcctlib_exit(void)`` before the client stops running to clean DrCCTProf.
+   After the initialization, you could call the function ``drcctlib_exit(void)`` before the client stops running to clean up DrCCTProf.
 
 We also provide an init API that can register more events callback functions:
 
@@ -65,10 +65,10 @@ drcctlib_init_ex()
 - ``flag``: a mode bitvector flag to tell DrCCTProf how to operate.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Obtain Full Calling Context
+Obtain Full Calling Contexts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-After you initialized DrCCTProf, the next step is to query the calling contexts and/or data objects for instructions of their choice:
+After you initialize DrCCTProf, the next step is to query the calling contexts and/or data objects for instructions being monitored:
 
 --------------------------------------
 drcctlib_get_context_handle()
@@ -94,7 +94,7 @@ drcctlib_get_global_context_handle_num()
 
 
 
-Given the context handle, you may access the calling context with a fixed depth:
+Given a context handle, you can obtain the calling context with a fixed depth. We define the max depath because a calling context can be long, especially for recursion.
 
 ------------------------------------------
 drcctlib_get_cct()
@@ -112,7 +112,7 @@ drcctlib_get_cct()
 
    If you do not use the context any more, you need call ``drcctlib_free_cct(inner_context_t *contxt_list)`` to free the memory space pointed to by ``contxt_list``. 
 
-Given the context handle, you can get the full calling context:
+Given a context handle, you can get the full calling context:
 
 ------------------------------------------
 drcctlib_get_full_cct()
@@ -123,7 +123,7 @@ drcctlib_get_full_cct()
    inner_context_t * drcctlib_get_full_cct(context_handle_t ctxt_hndl)
 
 
-You can print all the information of the fixed handle:
+It prints all the information (calling context, assembly code, source code attribution) of a given handle:
 
 ------------------------------------------
 drcctlib_print_backtrace()
