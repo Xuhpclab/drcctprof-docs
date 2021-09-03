@@ -9,6 +9,9 @@
 DrCCTProf
 ******************
 
+.. image:: code/poster.png
+  :alt: poster
+
 DrCCTProf is a fine-grained call path profiling framework for binaries 
 running on a **Linux** system and commodity X86, ARM, and AArch64 hardware.
 
