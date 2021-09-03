@@ -34,7 +34,7 @@ The easiest way to understand the client is to think of it as event driven. Each
 
 - 3. In ``ClientInit()``, the client calls ``drcctlib_init()``, which initializes DrCCTPorf and registers a function (``InsTransEventCallback()``) at each instruction in the application before the application execution. Such a function register for an event (i.e., upon each instruction) is usually called as a 'callback function'.
 
-- 4. In ``InsTransEventCallback()``, the client registers a callback function which is executed for each native instruction which appears in the code of the application, ``InsCount()``. The ``InsCount()`` function is the instrumentation which is the purpose of the client.
+- 4. In ``InsTransEventCallback()``, the client registers a callback function (``InsCount()``), which is executed upon each application instruction. The ``InsCount()`` function is used to collect and analyze instruction-level information, which typically requuires the most coding efforts.
 
 - 5. In ``dr_client_main()``, the client registers a callback function (``ClientExit()``), which is invoked just before the client stops running (i.e., at the end of the application execution).
 
