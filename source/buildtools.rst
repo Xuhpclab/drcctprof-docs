@@ -40,7 +40,7 @@ The easiest way to understand the client is to think of it as event-driven. Each
 
 - 6. The application stops running and DynamoRIO calls ClientExit().
 
-The preceding information is a simplified explanation of how a client operates. For a more detailed information, read the `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_ file, and refer to details of key functions in the DynamoRIO functions and DrCCTProf APIs reference manual, especially: ``dr_insert_clean_call()``, which implements the instrumentation you want. ``drcctlib_init(…, …, InsTransEventCallback, …)``, which defines where the
+The preceding information is a simplified explanation of how a client operates. For a more detailed information, read the `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_ file, and refer to details of key functions in the DynamoRIO functions and DrCCTProf APIs reference manual, especially: `dr_insert_clean_call() <https://dynamorio.org/dr__ir__utils_8h.html#a1df44dbe3d8dbf82e63e96741f167c64>`_, which implements the instrumentation you want. ``drcctlib_init(…, …, InsTransEventCallback, …)``, which defines where the
 instrumentation must be inserted.
 
 
