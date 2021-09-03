@@ -14,23 +14,35 @@ Initializing DrCCTProf
 
 This step is to initialize DrCCTProf and register the custom instrumentation functions to monitor all or a subset of instructions.
 
+.. code-block:: c++
+
+   DR_EXPORT
+   bool
+   drcctlib_init_ex( bool (*filter)(instr_t *), file_t file,
+                     void (*func1)(void *, instr_instrument_msg_t *),
+                     void (*func2)(void *, int32_t, int32_t),
+                     void (*func3)(void *, context_handle_t, int32_t, int32_t,
+                                    mem_ref_msg_t *, void **),
+                     char flag);
+
+
 Initialize DrCCTProf via ``drcctlib_init_ex`` with the following parameters:
 
 - ``filter``: an instruction filter;
 
-- ``file``: the file path of the source code of the guest program at the current point in the program.
+- ``file``: DEPRECATED;
 
-- ``func1``: an instrumentation function for instructions;
+- ``func1``: an instrumentation callback function for instructions;
 
-- ``func2``: an instrumentation function the beginning of basic blocks;
+- ``func2``: an instrumentation callback function the beginning of basic blocks;
 
-- ``func3``: an instrumentation function for the end of basic blocks;
+- ``func3``: an instrumentation callback function for the end of basic blocks;
 
-- ``flag``: a mode bitvector flag to tell DRCCTLib how to operate.
+- ``flag``: a mode bitvector flag to tell DrCCTProf how to operate.
 
 .. note::
 
-   After the initialization, you could use the function ``drcctlib_exit(void)`` to clean DRCCTLib.
+   After the initialization, you could call the function ``drcctlib_exit(void)`` before the client stops running to clean DrCCTProf.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Obtain Full Calling Context
@@ -40,7 +52,7 @@ After you initialized DrCCTProf, the next step is to query the calling contexts 
 
 The context handle is set via ``drcctlib_get_context_handle`` with the following parameters:
 
-- ``drcontext``: the context of the current instruction;
+- ``drcontext``: the DynamoRIO context of the current instruction;
 
 - ``slot``: the slot relative to the basic block.
 
@@ -56,9 +68,7 @@ Given the context handle, you may access the calling context with a fixed depth 
 
 .. note::
 
-   If you do not use the context any more, you may free the memory space pointed to by ``contxt_list``:
-
-``drcctlib_free_cct(context_t *contxt_list)``
+   If you do not use the context any more, you may free the memory space pointed to by ``contxt_list`` ``drcctlib_free_cct(context_t *contxt_list)``
 
 Given the context handle, you may also access full calling context:
 
@@ -78,14 +88,9 @@ You may also print the full calling context of the fixed handle and the assigned
 
 ``drcctlib_print_full_cct(file_t, context_handle_t ctxt_hndl, bool print_asm, bool print_file_path);``
 
-----------------------
+
+======================
 Data-centric
-----------------------
+======================
 
-Correlate contexts involved in the analyzed problem and accumulate metrics related to them. 
-
-Typically, a map is used, where the key is a 64-bit entity formed out of two 32-bit context handles and the value is any metric.
-
-??? Output the map as a tailored CCT with metrics for DrCCTProf's offline analysis with the following function:
-
-``drcctlib_get_data_hndl(void *drcontext, void *address)``
+coming soon

@@ -24,6 +24,7 @@ Build
 ======================
 
 Get sources from the github repository and build DrCCTProf:
+
 .. code-block:: console
 
    $ git clone --recurse https://github.com/Xuhpclab/DrCCTProf.git
@@ -54,7 +55,7 @@ To run DrCCTProf, one needs to issue the following command:
    +======================================+=========+=========================================================================================+
    | drcctlib_cct_only_clean_call         | release | A tool that collects call path on each **instruction**:sup:`*`.                         |
    +--------------------------------------+---------+-----------------------------------------------------------------------------------------+
-   | drcctlib_instr_statistics_clean_call | release | A instruction counting tool that counts each **instruction**:sup:`*`.                   |
+   | instr_statistics_clean_call          | release | A instruction counting tool that counts each **instruction**:sup:`*`.                   |
    +--------------------------------------+---------+-----------------------------------------------------------------------------------------+
    | drcctlib_reuse_distance_client_cache | release | A reuse distance measurement tool.                                                      |
    +--------------------------------------+---------+-----------------------------------------------------------------------------------------+
@@ -66,7 +67,7 @@ To run DrCCTProf, one needs to issue the following command:
    +--------------------------------------+---------+-----------------------------------------------------------------------------------------+
 
 ---------------------------------------------
-Example: drcctlib_instr_statistics_clean_call
+Example: instr_statistics_clean_call
 ---------------------------------------------
 
 In this example, you will write a simple application in C, compile it, and then run it using drcctlib_instr_statistics_clean_call client.
@@ -100,11 +101,11 @@ To generate an executable binary, compile your application with GCC Compiler.
 3. Run application using client
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Run the generated binary ``sample`` using drcctlib_instr_statistics_clean_call client.
+Run the generated binary ``sample`` using instr_statistics_clean_call client.
 
 .. code-block:: console
 
-   $ build/bin64/drrun -t drcctlib_instr_statistics_clean_call -- ./sample
+   $ build/bin64/drrun -t instr_statistics_clean_call -- ./sample
 
 The client outputs:
 

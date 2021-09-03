@@ -2,7 +2,7 @@ NO. 1 PC 0x000000000040113a "add    eax, 0x01"
 =>EXECUTION TIMES
 2000000
 =>BACK TRACE
-#0   0x000000000040113a in sub_fun at [../src/sample.c:5]
+#0   0x000000000040113a in moo at [../src/sample.c:5]
 #1   0x000000000040119b in main at [../src/sample.c:17]
 #2   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #3   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -16,7 +16,7 @@ NO. 2 PC 0x000000000040113d "mov    <rel> dword ptr [0x0000000000404034], eax"
 =>EXECUTION TIMES
 2000000
 =>BACK TRACE
-#0   0x000000000040113d in sub_fun at [../src/sample.c:5]
+#0   0x000000000040113d in moo at [../src/sample.c:5]
 #1   0x000000000040119b in main at [../src/sample.c:17]
 #2   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #3   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -29,7 +29,7 @@ NO. 3 PC 0x0000000000401143 "add    dword ptr [rbp-0x04], 0x01"
 =>EXECUTION TIMES
 2000000
 =>BACK TRACE
-#0   0x0000000000401143 in sub_fun at [../src/sample.c:4]
+#0   0x0000000000401143 in moo at [../src/sample.c:4]
 #1   0x000000000040119b in main at [../src/sample.c:17]
 #2   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #3   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -42,7 +42,7 @@ NO. 4 PC 0x0000000000401147 "cmp    dword ptr [rbp-0x04], 0x63"
 =>EXECUTION TIMES
 2000000
 =>BACK TRACE
-#0   0x0000000000401147 in sub_fun at [../src/sample.c:4]
+#0   0x0000000000401147 in moo at [../src/sample.c:4]
 #1   0x000000000040119b in main at [../src/sample.c:17]
 #2   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #3   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -55,7 +55,7 @@ NO. 5 PC 0x000000000040114b "jle    0x0000000000401134"
 =>EXECUTION TIMES
 2000000
 =>BACK TRACE
-#0   0x000000000040114b in sub_fun at [../src/sample.c:4]
+#0   0x000000000040114b in moo at [../src/sample.c:4]
 #1   0x000000000040119b in main at [../src/sample.c:17]
 #2   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #3   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -68,7 +68,7 @@ NO. 6 PC 0x0000000000401134 "mov    eax, <rel> dword ptr [0x0000000000404034]"
 =>EXECUTION TIMES
 2000000
 =>BACK TRACE
-#0   0x0000000000401134 in sub_fun at [../src/sample.c:5]
+#0   0x0000000000401134 in moo at [../src/sample.c:5]
 #1   0x000000000040119b in main at [../src/sample.c:17]
 #2   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #3   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -81,8 +81,8 @@ NO. 7 PC 0x000000000040113a "add    eax, 0x01"
 =>EXECUTION TIMES
 1000000
 =>BACK TRACE
-#0   0x000000000040113a in sub_fun at [../src/sample.c:5]
-#1   0x0000000000401166 in fun at [../src/sample.c:11]
+#0   0x000000000040113a in moo at [../src/sample.c:5]
+#1   0x0000000000401166 in foo at [../src/sample.c:11]
 #2   0x0000000000401188 in main at [../src/sample.c:15]
 #3   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #4   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -96,8 +96,8 @@ NO. 8 PC 0x000000000040113d "mov    <rel> dword ptr [0x0000000000404034], eax"
 =>EXECUTION TIMES
 1000000
 =>BACK TRACE
-#0   0x000000000040113d in sub_fun at [../src/sample.c:5]
-#1   0x0000000000401166 in fun at [../src/sample.c:11]
+#0   0x000000000040113d in moo at [../src/sample.c:5]
+#1   0x0000000000401166 in foo at [../src/sample.c:11]
 #2   0x0000000000401188 in main at [../src/sample.c:15]
 #3   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #4   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -110,8 +110,8 @@ NO. 9 PC 0x0000000000401143 "add    dword ptr [rbp-0x04], 0x01"
 =>EXECUTION TIMES
 1000000
 =>BACK TRACE
-#0   0x0000000000401143 in sub_fun at [../src/sample.c:4]
-#1   0x0000000000401166 in fun at [../src/sample.c:11]
+#0   0x0000000000401143 in moo at [../src/sample.c:4]
+#1   0x0000000000401166 in foo at [../src/sample.c:11]
 #2   0x0000000000401188 in main at [../src/sample.c:15]
 #3   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #4   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -124,8 +124,8 @@ NO. 10 PC 0x0000000000401147 "cmp    dword ptr [rbp-0x04], 0x63"
 =>EXECUTION TIMES
 1000000
 =>BACK TRACE
-#0   0x0000000000401147 in sub_fun at [../src/sample.c:4]
-#1   0x0000000000401166 in fun at [../src/sample.c:11]
+#0   0x0000000000401147 in moo at [../src/sample.c:4]
+#1   0x0000000000401166 in foo at [../src/sample.c:11]
 #2   0x0000000000401188 in main at [../src/sample.c:15]
 #3   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #4   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -138,8 +138,8 @@ NO. 11 PC 0x000000000040114b "jle    0x0000000000401134"
 =>EXECUTION TIMES
 1000000
 =>BACK TRACE
-#0   0x000000000040114b in sub_fun at [../src/sample.c:4]
-#1   0x0000000000401166 in fun at [../src/sample.c:11]
+#0   0x000000000040114b in moo at [../src/sample.c:4]
+#1   0x0000000000401166 in foo at [../src/sample.c:11]
 #2   0x0000000000401188 in main at [../src/sample.c:15]
 #3   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #4   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
@@ -152,8 +152,8 @@ NO. 12 PC 0x0000000000401134 "mov    eax, <rel> dword ptr [0x0000000000404034]"
 =>EXECUTION TIMES
 1000000
 =>BACK TRACE
-#0   0x0000000000401134 in sub_fun at [../src/sample.c:5]
-#1   0x0000000000401166 in fun at [../src/sample.c:11]
+#0   0x0000000000401134 in moo at [../src/sample.c:5]
+#1   0x0000000000401166 in foo at [../src/sample.c:11]
 #2   0x0000000000401188 in main at [../src/sample.c:15]
 #3   0x00007fe41ff67f43 in __libc_start_main at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:287]
 #4   0x0000000000401074 in <noname> at [/build/eglibc-xkFqqE/eglibc-2.19/csu/libc-start.c:0]
