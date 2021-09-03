@@ -17,13 +17,13 @@ In order to build you'll need the following packages:
 
 .. tip::
 
-   To avoid conflicts with installed original version packages, we recommend that use `Spack <https://spack.io/>`_ to manage the above packages and create a virtual environment to build and run DrCCTProf. 
+   To avoid any version conflicts with existing packages installed in the system, we recommend to use `Spack <https://spack.io/>`_ to manage the above packages and create a virtual environment to build and run DrCCTProf. 
 
 ======================
 Build
 ======================
 
-Get sources from the github repository and build DrCCTProf:
+Get source code from the github repository and build DrCCTProf:
 
 .. code-block:: console
 
@@ -34,7 +34,7 @@ Get sources from the github repository and build DrCCTProf:
 Usage
 ======================
 
-To run DrCCTProf, one needs to issue the following command:
+To run DrCCTProf, one needs to use the following command:
 
 -   **x86_64**
 
@@ -70,14 +70,14 @@ To run DrCCTProf, one needs to issue the following command:
 Example: instr_statistics_clean_call
 ---------------------------------------------
 
-In this example, you will write a simple application in C, compile it, and then run it using drcctlib_instr_statistics_clean_call client.
-The client will display the top 200 **instructions**:sup:`*` with their execution times and calling paths in the output file. 
+In this example, you will write a simple program in C, compile it, and run it using drcctlib_instr_statistics_clean_call client.
+The client will display the top 200 **instructions**:sup:`*` of the most execution frequency within their full call paths in the output file. 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 1. Create source file
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Create a simple C application and save it as a file named sample.c.
+Create a simple C program and save it as a file named sample.c.
 
 .. literalinclude:: code/sample.c
    :language: c
@@ -95,7 +95,7 @@ To generate an executable binary, compile your application with GCC Compiler.
 
 .. tip::
    
-   If the executable is build with ``-g`` opinion, the client will show more informations, such as source code line number and source files path.
+   If the executable is build with ``-g`` opinion, the client will show more information, such as source code line number and source file path.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 3. Run application using client
@@ -115,5 +115,5 @@ The client outputs:
 
 .. epigraph::
 
-   `*` `Different instructions may have the same PC, but they must have different call paths.`
+   `*` `Instructions of the same PC (program counter) may appear in different call paths.`
 
