@@ -4,11 +4,6 @@
 Build DrCCTPorf Instrumentation Clients
 ***************************************
 
-DrCCTProf provides a set of APIs for instrumentation client tool developers to build instrumentation clients. 
-In default, DrCCTProf turn on code-centric analysis so that developers can associate calling context 
-with custom metrics potentially on every executed machine instruction.
-A developer can also manually turn on data-centric analysis, which associates every memory address with the corresponding data object.
-With these two types of messages, developers can implement various clients for performance, debug, and security analysis.
 
 This topic uses an example to show how to create, build and run a client.
 
@@ -25,7 +20,7 @@ The term 'instrumentation client' in this context refers to a shared object file
 
 
 To correctly modify the libdrcctlib_instr_statistics_clean_call.so client, 
-you must understand its existing implementation, `instr_statistics_clean_call.cpp <https://dynamorio.org/dr__ir__utils_8h.html#a1df44dbe3d8dbf82e63e96741f167c64>`_. 
+you must understand its existing implementation, `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_. 
 The diagram below shows the key functions in instr_statistics_clean_call.cpp and how they relate to each other.
 
 .. image:: code/instr_statistics_clean_call_frame.png
@@ -45,7 +40,7 @@ The easiest way to understand the client is to think of it as event-driven. Each
 
 - 6. The application stops running and DynamoRIO calls ClientExit().
 
-The preceding information is a simplified explanation of how a client operates. For a more detailed information, read the `instr_statistics_clean_call.cpp <https://dynamorio.org/dr__ir__utils_8h.html#a1df44dbe3d8dbf82e63e96741f167c64>`_ file, and refer to details of key functions in the DynamoRIO functions and DrCCTProf APIs reference manual, especially: ``dr_insert_clean_call()``, which implements the instrumentation you want. ``drcctlib_init(…, …, InsTransEventCallback, …)``, which defines where the
+The preceding information is a simplified explanation of how a client operates. For a more detailed information, read the `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_ file, and refer to details of key functions in the DynamoRIO functions and DrCCTProf APIs reference manual, especially: ``dr_insert_clean_call()``, which implements the instrumentation you want. ``drcctlib_init(…, …, InsTransEventCallback, …)``, which defines where the
 instrumentation must be inserted.
 
 
