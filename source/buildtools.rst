@@ -5,34 +5,34 @@ Build DrCCTPorf Instrumentation Clients
 ***************************************
 
 
-This topic uses an example to show how to create, build and run a client.
+This topic uses an example to show how to create, build, and run a DrCCTProf client.
 
 ============================
 Basic structure of a client
 ============================
 
-This section describes the basic structure of an instrumentation client, 
-including the main events which occur during execution and what is typically done in each event.
+This section describes the basic structure of a DrCCTProf client, 
+including the functionality of various events occurring during the program execution.
 
-DrCCTPorf is an extension of DynamoRIO and it can collect call paths of every instruction of binaries at runtime. It provides APIs for developers to build instrumentation clients.
+DrCCTProf is an extension of DynamoRIO and it can collect the call path of every binary instruction at runtime. It provides a rich set of APIs for developers to build instrumentation clients.
 The term 'instrumentation client' in this context refers to a shared object file that uses the DrCCTProf API 
-& DynamoRIO API to capture and process wanted run-time events. 
+& DynamoRIO API to capture and process necessary runtime events. 
 
 
 To correctly modify the libdrcctlib_instr_statistics_clean_call.so client, 
-you must understand its existing implementation, `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_. 
+you must understand its implementation, `instr_statistics_clean_call.cpp <https://github.com/Xuhpclab/DrCCTProf/blob/master/src/clients/drcctprof_instr_statistics_clean_call/instr_statistics_clean_call.cpp>`_. 
 The diagram below shows the key functions in instr_statistics_clean_call.cpp and how they relate to each other.
 
 .. image:: code/instr_statistics_clean_call_frame.png
   :alt: instr_statistics_clean_call frame
 
-The easiest way to understand the client is to think of it as event-driven. Each function is called as a result of events which occur as the application is running:
+The easiest way to understand the client is to think of it as event-driven. Each function is called upon the occurence of an event during the application execution: 
 
-- 1. DynamoRIO loads and runs the client, calling ``dr_client_main()``, before beginning to execute the application.
+- 1. DynamoRIO loads and runs the client, calling ``dr_client_main()`` before the execution of the application.
 
-- 2. In ``dr_client_main()``, the client calls ``ClientInit()`` which will init any `extensions of DynamoRIO <https://dynamorio.org/page_ext.html>`_ before beginning to execute the application.
+- 2. In ``dr_client_main()``, the client calls ``ClientInit()``, which will initialize any `extensions of DynamoRIO <https://dynamorio.org/page_ext.html>`_ before the application execution.
 
-- 3. In ``ClientInit()``, the client calls ``drcctlib_init()`` which will init DrCCTPorf and registers a function as each instruction of code in the application is prepared before being executed, ``InsTransEventCallback()``. Registering such a function for an event is usually referred to as a 'callback function'.
+- 3. In ``ClientInit()``, the client calls ``drcctlib_init()``, which will initialize DrCCTPorf and register a function as each instruction of code in the application is prepared before being executed, ``InsTransEventCallback()``. Registering such a function for an event is usually referred to as a 'callback function'.
 
 - 4. In ``InsTransEventCallback()``, the client registers a callback function which is executed for each native instruction which appears in the code of the application, ``InsCount()``. The ``InsCount()`` function is the instrumentation which is the purpose of the client.
 
