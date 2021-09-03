@@ -72,7 +72,7 @@ To run DrCCTProf, one needs to use the following command:
 Example: instr_statistics_clean_call
 ---------------------------------------------
 
-In this example, you will write a simple program in C, compile it, and run it using drcctlib_instr_statistics_clean_call client.
+In this example, you will write a simple program in C, compile it, and run it using instr_statistics_clean_call client.
 The client will display the top 200 **instructions**:sup:`*` of the most execution frequency within their full call paths in the output file. 
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
