@@ -1,7 +1,7 @@
 .. Copyright 2021, Xuhpclab.
 
 ******************
-Quickstart
+QuickStart
 ******************
 
 ======================
