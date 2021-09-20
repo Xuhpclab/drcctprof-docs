@@ -101,7 +101,7 @@ To generate an executable binary, compile your application with GCC Compiler.
 
 .. tip::
    
-   If the executable is build with ``-g`` opinion, the client will show more information, such as source code line number and source file path.
+   If the executable is built with ``-g`` opinion, the client will show more information, such as source code line number and source file path.
 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 3. Run application using client
