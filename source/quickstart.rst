@@ -119,3 +119,11 @@ The client outputs:
 
    `*` `Instructions of the same PC (program counter) may appear in different call paths.`
 
+.. tip::
+   Intepreting the text output: The client drcctlib_instr_statistics_clean_call counts each instruction and outputs its execution frequency, context id (DrCCTProf internal use), pc, assemble code, and full call path (like the backtrace shown in GDB). So the xxx.out file's format is:
+No. _order_id_  ins call num _execute_times_ context handle _context_id_====_function_name_(_line_no_):"(_pc_)"
+=========================================================
+_full_call_path_ (each line format _function_name_(_line_no_):"(_pc_)_assemble_code_")
+=========================================================
+
+

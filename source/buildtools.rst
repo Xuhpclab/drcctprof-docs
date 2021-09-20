@@ -66,3 +66,11 @@ In the above example, ``InsTransEventCallback()`` is in the transformation phase
 At the execution phase, when an application instruction is executed, ``InsCount()`` is invoked to count instruction statistics.
 
 The best way to distinguish the two phases is to understand that `dr_insert_clean_call() <https://dynamorio.org/dr__ir__utils_8h.html#a1df44dbe3d8dbf82e63e96741f167c64>`_ is called once when an application instruction is transformed, but the function it instruments may be called many times when the application instruction is executed.
+
+
+============================================
+Add the new client to DrCCTProf build system
+===========================================
+
+If you want to add a new client, you need to create a folder with the client name in DrCCTProf/src/clients, and put the client_name.cpp and CMakeLists.txt in it. Then, when you finish the programming, you can run "sh build.sh" in the DrCCTProf root directory to build it. One can refer to any of the example clients to see how to edit the CMakeLists.txt.
+
