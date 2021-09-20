@@ -48,6 +48,10 @@ To run DrCCTProf, one needs to use the following command:
 
    $ build/bin64/drrun -unsafe_build_ldstex -t <client tool> -- <application> [apllication args]
 
+.. tip::
+
+   DrCCTProf leverages DynamoRIO to analyze a program execution on the fly, so make sure ``<application> [apllication args]`` is specified in a way you actually run ``<application>``. Don't pass the source code file as ``<application>``.
+
 .. admonition:: Internal client tools list
    
    +--------------------------------------+---------+-----------------------------------------------------------------------------------------+

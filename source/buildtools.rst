@@ -69,7 +69,7 @@ The best way to distinguish the two phases is to understand that `dr_insert_clea
 
 
 ============================================
-Add the new client to DrCCTProf build system
+Add a new client to DrCCTProf build system
 ============================================
 
 If you want to add a new client, you need to create a folder with the client name in DrCCTProf/src/clients, and put the client_name.cpp and CMakeLists.txt in it. Then, when you finish the programming, you can run "sh build.sh" in the DrCCTProf root directory to build it. One can refer to any of the example clients to see how to edit the CMakeLists.txt.
