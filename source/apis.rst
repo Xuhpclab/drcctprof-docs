@@ -150,3 +150,61 @@ Data-centric
 ======================
 
 coming soon
+
+======================
+Visualization APIs
+======================
+
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+DrCCTProf vscode format
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+
+--------------------------------------
+class Profile::profile_t::profile_t
+--------------------------------------
+
+- The class with all necessary vscode format generator APIs. One need to create a profile_t instance to output the necesary format to be visualized in vscode with the `DrCCTProf View extension`<https://github.com/Xuhpclab/drcctprof-viewer>`_.
+
+.. code-block:: c++
+
+   void add_metric_type(int64_t value_type, std::string unit, std::string des);
+
+Specify the metric type collected by DrCCTProf.
+
+- ``value type``: the value type;
+
+- ``unit``: the metric unit;
+
+- ``des``: the description of the metric.
+
+.. code-block:: c++
+
+   sample_t * add_sample(inner_context_t *ctxt);
+
+Add a sample to the profile. The sample is uniqely identified as its context (``ctxt``).
+
+- ``ctxt``: the context for a given execution point. It can be returned from drcctlib_get_full_cct() API.
+
+.. code-block:: c++
+
+   void serialize_to_file(const char *file_name);
+
+Write the profile to the file.
+
+- ``file_name``: .
+
+
+--------------------------------------
+class Profile::profile_t::sample_t
+--------------------------------------
+
+.. code-block:: c++
+
+   void append_metirc(int64_t value);
+   void append_metirc(uint64_t value);
+   void append_metirc(std::string value);
+
+Append the value of each metric to a sample. 
+
+- ``value``: the metric value can be int, uint, or string;
