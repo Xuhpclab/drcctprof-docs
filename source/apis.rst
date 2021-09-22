@@ -164,7 +164,7 @@ DrCCTProf vscode format
 class Profile::profile_t::profile_t
 --------------------------------------
 
-- The class with all necessary vscode format generator APIs. One need to create a profile_t instance to output the necesary format to be visualized in vscode with the `DrCCTProf View extension`<https://github.com/Xuhpclab/drcctprof-viewer>`_.
+- The class with all necessary vscode format generator APIs. One need to create a profile_t instance to output the necesary format to be visualized in vscode with the `DrCCTProf View extension <https://github.com/Xuhpclab/drcctprof-viewer>`_.
 
 .. code-block:: c++
 
