@@ -192,7 +192,7 @@ Add a sample to the profile. The sample is uniqely identified as its context (``
 
 Write the profile to the file.
 
-- ``file_name``: .
+- ``file_name``: the output file with the profile.
 
 
 --------------------------------------
