@@ -149,7 +149,39 @@ drcctlib_print_backtrace()
 Data-centric
 ======================
 
-coming soon
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Obtain Data Handler
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+If the data-centric mode is activated, DrCCTProf will use shadow memory to record static memory objects and dynamic memory objects. And you can query the object by calling the function below:
+
+------------------------------------------
+drcctlib_get_data_hndl()
+------------------------------------------
+
+.. code-block:: c++
+
+   data_handle_t drcctlib_get_data_hndl(void *drcontext, void *address);
+
+- ``drcontext``: the DynamoRIO context of the current instruction;
+
+- ``address``: effective address for which the data object is needed.
+
+The function will return a struct:
+
+.. code-block:: c++
+
+   typedef struct _data_handle_t {
+      uint8_t object_type;
+      union {
+         context_handle_t path_handle;
+         int32_t sym_name;
+      };
+   } data_handle_t;
+
+- ``objectType``: enumerate(STACK_OBJECT, DYNAMIC_OBJECT, STATIC_OBJECT, UNKNOW).
+  
+- ``path_handle & sym_name``: *path_handle* represents the allocation point of dynamic data; *sym_name* represents the name of static data.
 
 ======================
 Visualization APIs
