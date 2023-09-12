@@ -1,5 +1,0 @@
-# Checklist
-
-## Finished
-
-## Unfinished
